@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -47,19 +47,20 @@ public class Binaria extends Busquedas implements Ordenamiento
     }
 
     @Override
-    public int[] seleccion(int[] vector) 
+    public int[] seleccion(int[] vector) //Sorts the values in an array usin the selection algorithm
     {
-        int auxiliar;
+        int auxiliar; //dummy variable 
         for (int i = 0; i < vector.length - 1; i++) 
         { 
             int m = i; 
             for (int j = i + 1; j < vector.length; j++) 
             { 
-              if (vector[j] < vector [m]) 
+              if (vector[j] < vector [m]) //checks if the lowest index is equal to the next index
               { 
                   m = j;
               }
             }
+            //updates the array values
             auxiliar = vector[i];
             vector[i]=vector[m];
             vector[m]=auxiliar;
