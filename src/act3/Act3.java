@@ -15,14 +15,17 @@ public class Act3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int [] vect = {1,2,3,4,5,6,7,8,9,10,12}; //Se genera un arreglo en orden para que la busqueda binaria funcione
+        int [] vect = {4,15,63,13,35,24,11}; //Se genera un arreglo en orden para que la busqueda binaria funcione
         Secuencial sec = new Secuencial();
         sec.setV(vect);
-        sec.showF(sec.Search(1));
+        sec.showV();
+        System.out.println();
+        sec.showF(sec.Search(13));
         Binaria bin = new Binaria();
         bin.setV(vect);
-        bin.showF(bin.Search(4));
-        
+        int b = bin.Search(35);
+        bin.showV();        
+        bin.showF(b);
     }
     
 }

@@ -32,9 +32,9 @@ public abstract class Busquedas
     }
     public void showV() //Prints all of the items withing the vector.
     {
-        for(int i=0;i<this.vector.length-1;i++)
+        for(int i=0;i<this.vector.length;i++)
         {
-            System.out.println(this.vector[i]+", ");
+            System.out.print(this.vector[i]+", ");
         }
     }
     public void showF (int n) //Prints the position where the item to find is located.
