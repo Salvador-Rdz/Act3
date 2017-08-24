@@ -10,5 +10,5 @@ package act3;
  * @author Salvador
  */
 public interface Ordenamiento {
-    public abstract int [] seleccion(int [] vector);
+    public abstract void seleccion();
 }

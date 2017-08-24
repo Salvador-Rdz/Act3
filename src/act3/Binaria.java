@@ -18,7 +18,7 @@ public class Binaria extends Busquedas implements Ordenamiento
         //Variables
         int inicio, centro, fin;
         int valorCentro;
-        this.vector=seleccion(this.vector);
+        seleccion();
         inicio = 0; fin = vector.length-1;
         centro = (inicio + fin)/2;
         //While the starting value of the setup is lower than the final position of the vector
@@ -47,7 +47,7 @@ public class Binaria extends Busquedas implements Ordenamiento
     }
 
     @Override
-    public int[] seleccion(int[] vector) //Sorts the values in an array usin the selection algorithm
+    public void seleccion() //Sorts the values in an array usin the selection algorithm
     {
         int auxiliar; //dummy variable 
         for (int i = 0; i < vector.length - 1; i++) 
@@ -65,7 +65,11 @@ public class Binaria extends Busquedas implements Ordenamiento
             vector[i]=vector[m];
             vector[m]=auxiliar;
         }
-        return vector;
+    }
+    
+    public void intercambio(int p1, int p2)
+    {
+        //vector(p1)=vector(p2);
     }
     
 }
