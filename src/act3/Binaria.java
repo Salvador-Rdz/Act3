@@ -18,7 +18,7 @@ public class Binaria extends Busquedas implements Ordenamiento
         //Variables
         int inicio, centro, fin;
         int valorCentro;
-        seleccion();
+        quicksort(0,vector.length-1);
         inicio = 0; fin = vector.length-1;
         centro = (inicio + fin)/2;
         //While the starting value of the setup is lower than the final position of the vector
@@ -69,7 +69,40 @@ public class Binaria extends Busquedas implements Ordenamiento
     
     public void intercambio(int p1, int p2)
     {
-        //vector(p1)=vector(p2);
+        int tmp=vector[p1];
+        vector[p1]=vector[p2];
+        vector[p2]=tmp;
+    }
+    public void quicksort(int inicio, int fin)
+    {
+        int i, j, pivot;
+        i=inicio;j=fin;
+        pivot=vector[(i+j)/2];
+        do
+        {
+            while(vector[i]<pivot)
+            {
+                i++;
+            }
+            while(vector[j]<pivot)
+            {
+                j--;
+            }
+            if(i<=j)
+            {
+                intercambio(i,j);
+                i++;j--;
+            }
+        }
+        while(i<=j);
+        if(inicio<j)
+        {
+            quicksort(inicio, j);
+        }
+        if(i < fin)
+        {
+            quicksort(i, fin);
+        }
     }
     
 }
