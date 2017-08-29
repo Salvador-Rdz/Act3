@@ -32,7 +32,7 @@ public class Act3 {
         bin.bubble();
         bin.insertion();
         bin.mergeSort(0, bin.vector.length-1);
-        bin.intercambio(0, bin.vector.length-1);
+        bin.quickSort(0, bin.vector.length-1);
         */
         //Search of the value
         int b = bin.Search(35);
