@@ -44,8 +44,7 @@ public class Binaria extends Busquedas implements Ordenamiento
 
     @Override
     public void selection() //Sorts the values in an array using the selection algorithm
-    {
-        int auxiliar; //dummy variable 
+    { 
         for (int i = 0; i < vector.length - 1; i++) 
         { 
             int m = i; 
@@ -73,9 +72,9 @@ public class Binaria extends Busquedas implements Ordenamiento
         int i, j, pivot;
         i=inicio;j=fin;
         pivot=vector[inicio];
-        do
+        do //while the start and end don't cross
         {
-            //Moves throughout the vector comparing the values and position, moving one by one, forwards or backwards
+            //Moves throughout the vector comparing the values with the pivot, moving one by one, forwards or backwards
             while(vector[i]<=pivot && i<j)
             {
                 i++;
@@ -90,9 +89,10 @@ public class Binaria extends Busquedas implements Ordenamiento
                 i++;j--;
             }
         }
-        while(i<=j);
+        while(i<=j); 
         vector[inicio] = vector[j];
         vector[j] = pivot;
+        //Uses recursivity to sort all of the values set by set
         if(inicio<j-1)
         {
             quickSort(inicio, j-1);
@@ -157,7 +157,7 @@ public class Binaria extends Busquedas implements Ordenamiento
         {
             for(int j=0;j<this.vector.length-i-1;j++)
             {
-                if(this.vector[j+1]<this.vector[j])
+                if(this.vector[j+1]<this.vector[j]) //checks if the next value is smaller than the current value
                 {
                    intercambio(j+1,j); //Uses a predefined function to swap out values
                 }
@@ -174,7 +174,7 @@ public class Binaria extends Busquedas implements Ordenamiento
         { 
           tmp=this.vector[i];  
           i--;      
-          while((j>=0)&&(this.vector[j]>tmp))
+          while((j>=0)&&(this.vector[j]>tmp)) //moves throughout the index backwards while checking if the current value is higher than the vector of reference
           {  
             this.vector[j+1]=this.vector[j]; //Swaps the values on the left with the ones on the right
             j--;
