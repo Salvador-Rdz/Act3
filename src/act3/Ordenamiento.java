@@ -10,5 +10,9 @@ package act3;
  * @author Salvador
  */
 public interface Ordenamiento {
-    public abstract void seleccion();
+    public abstract void selection();
+    public abstract void bubble();
+    public abstract void insertion();
+    public abstract void mergeSort(int inicio, int fin);
+    public abstract void quickSort(int inicio, int fin);
 }

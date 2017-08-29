@@ -1,7 +1,4 @@
     /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
  */
 package act3;
 
@@ -18,7 +15,6 @@ public class Binaria extends Busquedas implements Ordenamiento
         //Variables
         int inicio, centro, fin;
         int valorCentro;
-        quicksort(0,vector.length-1);
         inicio = 0; fin = vector.length-1;
         centro = (inicio + fin)/2;
         //While the starting value of the setup is lower than the final position of the vector
@@ -47,7 +43,7 @@ public class Binaria extends Busquedas implements Ordenamiento
     }
 
     @Override
-    public void seleccion() //Sorts the values in an array usin the selection algorithm
+    public void selection() //Sorts the values in an array using the selection algorithm
     {
         int auxiliar; //dummy variable 
         for (int i = 0; i < vector.length - 1; i++) 
@@ -61,48 +57,130 @@ public class Binaria extends Busquedas implements Ordenamiento
               }
             }
             //updates the array values
-            auxiliar = vector[i];
-            vector[i]=vector[m];
-            vector[m]=auxiliar;
+            intercambio(i, m);
         }
     }
     
-    public void intercambio(int p1, int p2)
+    public void intercambio(int p1, int p2) //function used to switch two values in this class's array.
     {
         int tmp=vector[p1];
         vector[p1]=vector[p2];
         vector[p2]=tmp;
     }
-    public void quicksort(int inicio, int fin)
+    @Override
+    public void quickSort(int inicio, int fin) //Sorts the values in an array using the quicksort algorithm
     {
         int i, j, pivot;
         i=inicio;j=fin;
-        pivot=vector[(i+j)/2];
+        pivot=vector[inicio];
         do
         {
-            while(vector[i]<pivot)
+            //Moves throughout the vector comparing the values and position, moving one by one, forwards or backwards
+            while(vector[i]<=pivot && i<j)
             {
                 i++;
             }
-            while(vector[j]<pivot)
+            while(vector[j]>pivot)
             {
                 j--;
             }
-            if(i<=j)
+            if(i<j)
             {
-                intercambio(i,j);
+                intercambio(j,i); //Uses the swap function to exchange the values
                 i++;j--;
             }
         }
         while(i<=j);
-        if(inicio<j)
+        vector[inicio] = vector[j];
+        vector[j] = pivot;
+        if(inicio<j-1)
         {
-            quicksort(inicio, j);
+            quickSort(inicio, j-1);
         }
         if(i < fin)
         {
-            quicksort(i, fin);
+            quickSort(j+1, fin);
         }
+    }
+
+    @Override
+    public void mergeSort(int inicio, int fin) //Sorts the values in an array using the mergeSort algorithm
+    {
+        if(fin-inicio == 0 || fin - inicio == 1) //if the current evaluated list is of size 0 or 1, it means its already sorted.
+        {
+            
+        }
+        else
+        {
+            int pivote = (inicio + fin)/2;
+            mergeSort(inicio, pivote);
+            mergeSort(pivote, fin);
+            int p1 = inicio;
+            int p2 = pivote;
+            int p3 = 0;
+            //an auxiliary array is created to save the in-order lists.
+            int [] listaAux = new int[fin-inicio]; 
+            //Moves throughout the pivots and points, while checking the value of each point.
+            while(p1<pivote || p2<fin) 
+            {
+                if(p1<pivote && p2<fin)
+                {
+                    if(this.vector[p3++]<this.vector[p2++])
+                    {
+                        listaAux[p3++] = this.vector[p1++]; //In case they're smaller, they're swapped. 
+                    }
+                    else
+                    {
+                        listaAux[p3++] = this.vector[p2++];
+                    }
+                }
+                else if (p1<pivote)
+                {
+                    listaAux[p3++] = listaAux[p1++];
+                }
+                else
+                {
+                    listaAux[p3++] = listaAux[p2++];
+                }
+            }
+            for(int i=0; i<fin-inicio;i++)
+            {
+                this.vector[inicio+i] = listaAux[i];
+            }
+        }
+    }
+
+    @Override
+    public void bubble() //Sorts the values in an array using the bubble algorithm
+    {
+        for(int i=0;i<this.vector.length-1;i++)
+        {
+            for(int j=0;j<this.vector.length-i-1;j++)
+            {
+                if(this.vector[j+1]<this.vector[j])
+                {
+                   intercambio(j+1,j); //Uses a predefined function to swap out values
+                }
+            }
+        }
+    }
+
+    @Override
+    public void insertion() //Sorts the values in an array using the insertion algorithm
+    {
+        int tmp;
+        int j = 0;
+        for(int i =1;i<this.vector.length-1;i++)
+        { 
+          tmp=this.vector[i];  
+          i--;      
+          while((j>=0)&&(this.vector[j]>tmp))
+          {  
+            this.vector[j+1]=this.vector[j]; //Swaps the values on the left with the ones on the right
+            j--;
+          }
+        this.vector[j+1]=tmp;   
+       }
     }
     
 }
